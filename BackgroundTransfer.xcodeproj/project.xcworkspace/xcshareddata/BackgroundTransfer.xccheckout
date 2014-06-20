@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C202645E-9091-4EFE-8D1E-A0CA3D1085ED</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BackgroundTransfer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EEFD7B86-A039-4B55-9D1B-1B48FA45A2A1</key>
+		<string>ssh://github.com/feixiang/backgroundTransfer.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BackgroundTransfer.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EEFD7B86-A039-4B55-9D1B-1B48FA45A2A1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/feixiang/backgroundTransfer.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EEFD7B86-A039-4B55-9D1B-1B48FA45A2A1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EEFD7B86-A039-4B55-9D1B-1B48FA45A2A1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BackgroundTransfer</string>
+		</dict>
+	</array>
+</dict>
+</plist>
