@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "FileDownloadInfo.h"
 #import "FileUploadInfo.h"
 #import "AppDelegate.h"
+#import "Reachability.h"
 
 // Define some constants regarding the tag values of the prototype cell's subviews.
 #define CellLabelTagValue               10
@@ -34,9 +34,13 @@
 @property (nonatomic, strong) NSURL *uploadURL;
 @property (nonatomic, strong) NSNumber *currentIndex;
 
+@property (nonatomic, strong) void (^completionHandler)(BOOL, NSArray *, NSError *);
+
 @end
 
 @implementation ViewController
+
+
 
 
 - (void)initUploadList{
@@ -233,6 +237,8 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend
     // 更新界面
     //int index = [self getIndexWithTaskIdentifier:task.taskIdentifier];
     int index = [self.currentIndex intValue];
+    
+    if( index <  [self.arrUploadList count] ){
     FileUploadInfo *uploader = [self.arrUploadList objectAtIndex:index];
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -242,31 +248,38 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend
         UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:CellProgressBarTagValue];
         progressView.progress = uploader.progress;
     }];
+    }
 }
 
 // 上传完成
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
-    // 这里继续做下一个任务
-    [self BgUploadBeginNextTask];
+    if( error == nil ){
+        // 这里继续做下一个任务
+        [self BgUploadBeginNextTask];
+    }else{
+        NSLog(@"\nupload failed!");
+    }
 }
 
 - (void)BgUploadBeginNextTask{
     //int index = [self getIndexWithTaskIdentifier:task.taskIdentifier] + 1 ;
     self.currentIndex = @([self.currentIndex intValue] + 1 );
     int index = [self.currentIndex intValue];
-    FileUploadInfo *uploader = [self.arrUploadList objectAtIndex:index];
-    
-    NSLog(@"\n第 %@ 个任务 %@ 完成 ",self.currentIndex, uploader.filePath);
-    
-    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    localNotification.alertBody = [NSString stringWithFormat:@"%@ have been uploaded!",uploader.filePath];
-    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
-    
-    
-    //先删除临时文件
-    [self BgUploadRemoveTmpFile:uploader.filePath];
-    if( index < [self.arrUploadList count] ){
-        [self BgUploadCommon:uploader.filePath];
+    if( index <  [self.arrUploadList count] ){
+        FileUploadInfo *uploader = [self.arrUploadList objectAtIndex:index];
+        
+        NSLog(@"\n第 %@ 个任务 %@ 完成 ",self.currentIndex, uploader.filePath);
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.alertBody = [NSString stringWithFormat:@"%@ have been uploaded!",uploader.filePath];
+        [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+        
+        
+        //先删除临时文件
+        //[self BgUploadRemoveTmpFile:uploader.filePath];
+        if( index < [self.arrUploadList count] ){
+            [self BgUploadCommon:uploader.filePath];
+        }
     }
 }
 
@@ -313,6 +326,21 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend
 //----------------END NSURLSession回调函数-----------------------
 
 
+//----------------Background Fetch用来检测网络-------
+-(void)UploadTaskWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    Reachability* wifiReach = [Reachability reachabilityForLocalWiFi];
+    NetworkStatus netStatus = [wifiReach currentReachabilityStatus];
+    // 如果有wifi，则启动上传task
+    if ( netStatus == ReachableViaWiFi) {
+        completionHandler(UIBackgroundFetchResultNewData);
+        NSLog(@"\nwifi is ok");
+        [self.task resume];
+    }else{
+        completionHandler(UIBackgroundFetchResultFailed);
+        NSLog(@"\nNo wifi connection");
+    }
+    
+}
 
 
 // 获取目录下的所有文件

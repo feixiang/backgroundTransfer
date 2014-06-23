@@ -21,6 +21,7 @@
 - (IBAction)startAll:(id)sender;
 - (IBAction)cancelUpload:(id)sender;
 
+-(void)UploadTaskWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 
 
 @end

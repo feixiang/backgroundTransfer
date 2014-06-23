@@ -7,14 +7,17 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     // Override point for customization after application launch.
     return YES;
 }
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -47,6 +50,21 @@
     
     self.backgroundTransferCompletionHandler = completionHandler;
     
+}
+
+// 这里利用Background Fetch进行简单的网络检测
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    NSDate *fetchStart = [NSDate date];
+    
+    ViewController *viewController = (ViewController *)self.window.rootViewController;
+    [viewController UploadTaskWithCompletionHandler:^(UIBackgroundFetchResult result) {
+        completionHandler(result);
+        
+        NSDate *fetchEnd = [NSDate date];
+        NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
+        NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
+        
+    }];
 }
 
 

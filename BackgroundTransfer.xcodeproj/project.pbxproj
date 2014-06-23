@@ -22,6 +22,8 @@
 		4A422F17194E8C2B0043782E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A422EF9194E8C2B0043782E /* UIKit.framework */; };
 		4A422F1F194E8C2B0043782E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A422F1D194E8C2B0043782E /* InfoPlist.strings */; };
 		4A422F21194E8C2B0043782E /* BackgroundTransferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A422F20194E8C2B0043782E /* BackgroundTransferTests.m */; };
+		4A4A6D02195585B300D34FE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4A6D01195585B300D34FE9 /* SystemConfiguration.framework */; };
+		4A4A6D05195585D400D34FE9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4A6D04195585D400D34FE9 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,9 @@
 		4A422F1C194E8C2B0043782E /* BackgroundTransferTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BackgroundTransferTests-Info.plist"; sourceTree = "<group>"; };
 		4A422F1E194E8C2B0043782E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4A422F20194E8C2B0043782E /* BackgroundTransferTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackgroundTransferTests.m; sourceTree = "<group>"; };
+		4A4A6D01195585B300D34FE9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4A4A6D03195585D400D34FE9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "../../../../../Users/dolphin/Downloads/Reachability-master/Reachability.h"; sourceTree = "<group>"; };
+		4A4A6D04195585D400D34FE9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "../../../../../Users/dolphin/Downloads/Reachability-master/Reachability.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A4A6D02195585B300D34FE9 /* SystemConfiguration.framework in Frameworks */,
 				4A422EF8194E8C2B0043782E /* CoreGraphics.framework in Frameworks */,
 				4A422EFA194E8C2B0043782E /* UIKit.framework in Frameworks */,
 				4A422EF6194E8C2B0043782E /* Foundation.framework in Frameworks */,
@@ -104,6 +110,7 @@
 		4A422EF4194E8C2B0043782E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A4A6D01195585B300D34FE9 /* SystemConfiguration.framework */,
 				4A422EF5194E8C2B0043782E /* Foundation.framework */,
 				4A422EF7194E8C2B0043782E /* CoreGraphics.framework */,
 				4A422EF9194E8C2B0043782E /* UIKit.framework */,
@@ -117,6 +124,8 @@
 			children = (
 				4A422F04194E8C2B0043782E /* AppDelegate.h */,
 				4A422F05194E8C2B0043782E /* AppDelegate.m */,
+				4A4A6D03195585D400D34FE9 /* Reachability.h */,
+				4A4A6D04195585D400D34FE9 /* Reachability.m */,
 				4A23F867195014E00098624A /* FileUploadInfo.h */,
 				4A23F868195014E00098624A /* FileUploadInfo.m */,
 				4A422F0D194E8C2B0043782E /* Images.xcassets */,
@@ -265,6 +274,7 @@
 				4A23F869195014E00098624A /* FileUploadInfo.m in Sources */,
 				4A422F06194E8C2B0043782E /* AppDelegate.m in Sources */,
 				4A422F02194E8C2B0043782E /* main.m in Sources */,
+				4A4A6D05195585D400D34FE9 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
